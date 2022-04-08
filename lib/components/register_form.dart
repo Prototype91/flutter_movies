@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -16,9 +17,13 @@ class _RegisterFormState extends State<RegisterForm> {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then(
-            (value) => Navigator.of(context).pushReplacementNamed('/login'),
-          );
+          .then((value) {
+        FirebaseFirestore.instance
+            .collection("UserData")
+            .doc(value.user?.uid)
+            .set({"email": value.user?.email}).then((value) =>
+                Navigator.of(context).pushReplacementNamed('/login'));
+      });
     } on FirebaseException catch (error) {
       if (error.code == 'weak-password') {
         setState(() {

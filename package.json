@@ -1,0 +1,22 @@
+{
+  "name": "flutter_movies",
+  "version": "1.0.0",
+  "description": "A new Flutter project.",
+  "main": "main.dart",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "flutter run -d web-server --web-port 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prototype91/flutter_movies.git"
+  },
+  "author": "Lecomte Dylan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prototype91/flutter_movies/issues"
+  },
+  "homepage": "https://github.com/Prototype91/flutter_movies#readme"
+}
