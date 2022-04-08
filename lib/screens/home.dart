@@ -24,6 +24,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Movies'),
+        // Removes the back button
+        // automaticallyImplyLeading: false
       ),
       body: list[index],
       bottomNavigationBar: BottomNavigationBar(

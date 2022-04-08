@@ -1,21 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class RegisterForm extends StatefulWidget {
-  const RegisterForm({Key? key}) : super(key: key);
+class LoginForm extends StatefulWidget {
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
-  State<RegisterForm> createState() => _RegisterFormState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _RegisterFormState extends State<RegisterForm> {
+class _LoginFormState extends State<LoginForm> {
   final key = GlobalKey<FormState>();
   String email = '', password = '', errorMessage = '';
 
-  void signInToFirebase(String email, String password) async {
+  Future<void> signIn(String email, String password) async {
     try {
       await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password)
+          .signInWithEmailAndPassword(email: email, password: password)
           .then(
             (value) => Navigator.of(context).pushReplacementNamed('/'),
           );
@@ -47,14 +47,14 @@ class _RegisterFormState extends State<RegisterForm> {
         ),
         child: Column(
           children: <Widget>[
-            const Text('Form'),
+            const Text('Login'),
             const SizedBox(
               height: 25,
             ),
             TextFormField(
               validator: (String? value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
+                  return 'Please enter your email';
                 }
                 return null;
               },
@@ -71,9 +71,13 @@ class _RegisterFormState extends State<RegisterForm> {
               height: 25,
             ),
             TextFormField(
+              decoration: const InputDecoration(hintText: 'Password'),
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
               validator: (String? value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
+                  return 'Please enter your password';
                 }
                 return null;
               },
@@ -82,7 +86,6 @@ class _RegisterFormState extends State<RegisterForm> {
                   password = value!;
                 });
               },
-              decoration: const InputDecoration(hintText: 'Password'),
             ),
             const SizedBox(
               height: 25,
@@ -91,10 +94,10 @@ class _RegisterFormState extends State<RegisterForm> {
               onPressed: () {
                 if (key.currentState!.validate()) {
                   key.currentState!.save();
-                  signInToFirebase(email, password);
+                  signIn(email, password);
                 }
               },
-              child: const Text('Submit'),
+              child: const Text('Login'),
             ),
             const SizedBox(
               height: 25,
