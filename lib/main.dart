@@ -35,12 +35,11 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Flutter Movies',
             theme: ThemeData(
-              primarySwatch: Colors.blue,
+              primarySwatch: Colors.deepPurple,
             ),
             debugShowCheckedModeBanner: false,
             routes: routes,
-            initialRoute:
-                FirebaseAuth.instance.currentUser != null ? '/' : '/',
+            initialRoute: FirebaseAuth.instance.currentUser != null ? '/' : '/',
           );
         }
 
@@ -48,4 +47,4 @@ class MyApp extends StatelessWidget {
       }),
     );
   }
-} 
+}

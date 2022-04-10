@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movies/screens/first.dart';
+import 'package:flutter_movies/screens/movies_home.dart';
+import 'package:flutter_movies/screens/movies_list.dart';
+import 'package:flutter_movies/screens/user.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -14,16 +16,17 @@ class _MyHomePageState extends State<MyHomePage> {
   int index = 0;
 
   List<Widget> list = [
-    const Page1(),
-    const Page1(),
-    const Page1(),
+    const MoviesHome(),
+    const MoviesList(),
+    const UserScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Movies'),
+        title: const Text('Flutter Movies',
+            style: TextStyle(fontSize: 16)),
         // Removes the back button
         // automaticallyImplyLeading: false
       ),
@@ -37,12 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
             index = i;
           });
         },
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.deepPurple,
         selectedItemColor: Colors.white,
-        iconSize: 48,
+        iconSize: 24,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'List'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.local_movies), label: 'List'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'User'),
         ],
       ),
