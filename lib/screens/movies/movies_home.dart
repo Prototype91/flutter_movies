@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/clients/movie.client.dart';
-import 'package:flutter_movies/components/movie_card.dart';
+import 'package:flutter_movies/components/movies/movie_card.dart';
 import 'package:flutter_movies/models/movie.model.dart';
 
 // ignore: must_be_immutable

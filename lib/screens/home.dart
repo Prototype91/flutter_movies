@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/screens/movies/movies_home.dart';
 import 'package:flutter_movies/screens/movies/movies_search.dart';
@@ -25,11 +26,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Movies',
-            style: TextStyle(fontSize: 16)),
-        // Removes the back button
-        automaticallyImplyLeading: false
-      ),
+          title: const Text('Flutter Movies', style: TextStyle(fontSize: 16)),
+          // Removes the back button
+          automaticallyImplyLeading: false),
       body: list[index],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
