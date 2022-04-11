@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movies/screens/movies_home.dart';
-import 'package:flutter_movies/screens/movies_list.dart';
-import 'package:flutter_movies/screens/user.dart';
+import 'package:flutter_movies/screens/movies/movies_home.dart';
+import 'package:flutter_movies/screens/movies/movies_search.dart';
+import 'package:flutter_movies/screens/user/user.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -16,8 +16,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int index = 0;
 
   List<Widget> list = [
-    const MoviesHome(),
-    const MoviesList(),
+    MoviesHome(),
+    const MoviesSearch(),
     const UserScreen(),
   ];
 
@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Flutter Movies',
             style: TextStyle(fontSize: 16)),
         // Removes the back button
-        // automaticallyImplyLeading: false
+        automaticallyImplyLeading: false
       ),
       body: list[index],
       bottomNavigationBar: BottomNavigationBar(
@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.local_movies), label: 'List'),
+              icon: Icon(Icons.local_movies), label: 'Movies'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'User'),
         ],
       ),

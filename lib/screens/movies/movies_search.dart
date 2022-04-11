@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class MoviesHome extends HookWidget {
-  const MoviesHome({
+class MoviesSearch extends HookWidget {
+  const MoviesSearch({
     Key? key,
   }) : super(key: key);
 
