@@ -52,14 +52,14 @@ class _RegisterFormState extends State<RegisterForm> {
         ),
         child: Column(
           children: <Widget>[
-            const Text('Register'),
+            const Text('Nouveau compte'),
             const SizedBox(
               height: 25,
             ),
             TextFormField(
               validator: (String? value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
+                  return 'Veuillez saisir une adresse email';
                 }
                 return null;
               },
@@ -76,13 +76,13 @@ class _RegisterFormState extends State<RegisterForm> {
               height: 25,
             ),
             TextFormField(
-              decoration: const InputDecoration(hintText: 'Password'),
+              decoration: const InputDecoration(hintText: 'Mot de passe'),
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
               validator: (String? value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
+                  return 'Veuillez saisir un mot de passe';
                 }
                 return null;
               },
@@ -102,12 +102,20 @@ class _RegisterFormState extends State<RegisterForm> {
                   register(email, password);
                 }
               },
-              child: const Text('Register'),
+              child: const Text('Créer'),
             ),
             const SizedBox(
               height: 25,
             ),
-            if (errorMessage.isNotEmpty) Text(errorMessage)
+            if (errorMessage.isNotEmpty) Text(errorMessage),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 14),
+              ),
+              onPressed: () =>
+                  Navigator.of(context).pushReplacementNamed('/login'),
+              child: const Text('Se connecter'),
+            )
           ],
         ),
       ),

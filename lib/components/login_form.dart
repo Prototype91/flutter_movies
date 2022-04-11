@@ -47,14 +47,14 @@ class _LoginFormState extends State<LoginForm> {
         ),
         child: Column(
           children: <Widget>[
-            const Text('Login'),
+            const Text('Connexion'),
             const SizedBox(
               height: 25,
             ),
             TextFormField(
               validator: (String? value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
+                  return 'Veuillez saisir une adresse email';
                 }
                 return null;
               },
@@ -77,7 +77,7 @@ class _LoginFormState extends State<LoginForm> {
               autocorrect: false,
               validator: (String? value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
+                  return 'Veuillez saisir un mot de passe';
                 }
                 return null;
               },
@@ -97,12 +97,20 @@ class _LoginFormState extends State<LoginForm> {
                   signIn(email, password);
                 }
               },
-              child: const Text('Login'),
+              child: const Text('Me connecter'),
             ),
             const SizedBox(
               height: 25,
             ),
-            if (errorMessage.isNotEmpty) Text(errorMessage)
+            if (errorMessage.isNotEmpty) Text(errorMessage),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 14),
+              ),
+              onPressed: () =>
+                  Navigator.of(context, ).pushReplacementNamed('/register'),
+              child: const Text('Créer un compte'),
+            )
           ],
         ),
       ),

@@ -12,12 +12,25 @@ class MovieCard extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       width: 160,
       child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            '/movie-details',
+            arguments: {
+              'id': movie.id.toString(),
+              'title': movie.title ?? '',
+              'posterPath':
+                  'https://image.tmdb.org/t/p/w500/' + (movie.posterPath ?? ''),
+              'overview': movie.overview ?? '',
+              'voteAverage': movie.voteAverage ?? '',
+            },
+          );
+        },
         child: Column(
           children: <Widget>[
             Card(
               elevation: 10,
               child: Hero(
-                tag: 1,
+                tag: movie.id.toString(),
                 child: Container(
                   height: 180,
                   decoration: BoxDecoration(
