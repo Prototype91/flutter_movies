@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/screens/movies/movies_home.dart';
 import 'package:flutter_movies/screens/movies/movies_search.dart';
@@ -39,7 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
             index = i;
           });
         },
-        backgroundColor: Colors.deepPurple,
         selectedItemColor: Colors.white,
         iconSize: 24,
         items: const [

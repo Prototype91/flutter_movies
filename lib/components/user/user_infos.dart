@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_movies/components/dark_theme/dark_theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class UserInfos extends StatelessWidget {
   const UserInfos({Key? key}) : super(key: key);
@@ -9,6 +11,7 @@ class UserInfos extends StatelessWidget {
   Widget build(BuildContext context) {
     final User? user = FirebaseAuth.instance.currentUser;
     final String? uid = user?.uid;
+    final themeChange = Provider.of<DarkThemeProvider>(context);
 
     return FutureBuilder<DocumentSnapshot>(
         future:
@@ -170,9 +173,14 @@ class UserInfos extends StatelessWidget {
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
                                         textAlign: TextAlign.left),
-                                  )
+                                  ),
                                 ],
-                              )
+                              ),
+                              Checkbox(
+                                  value: themeChange.darkTheme,
+                                  onChanged: (bool? value) {
+                                    themeChange.darkTheme = value ?? false;
+                                  })
                             ],
                           ))
                     ])),

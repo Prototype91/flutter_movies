@@ -11,10 +11,8 @@ class MovieDetailsScreen extends StatelessWidget {
     final rating = routeArgs['voteAverage'];
 
     return Scaffold(
-      backgroundColor: const Color(0xfff4f4f4),
       appBar: AppBar(
           title: const Text('Movie Details'),
-          backgroundColor: Colors.deepPurple,
           elevation: 0),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
