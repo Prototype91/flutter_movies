@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/clients/movie.client.dart';
 import 'package:flutter_movies/components/movies/movie_card.dart';
@@ -14,7 +16,11 @@ class MoviesHome extends StatelessWidget {
   @override
   Widget build(context) {
     return FutureBuilder(
-        future: Future.wait([getPopularMovies(), getTopRatedMovies()]),
+        future: Future.wait([
+          Future.delayed(const Duration(seconds: 1)),
+          getPopularMovies(),
+          getTopRatedMovies()
+        ]),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
             return SingleChildScrollView(
@@ -42,8 +48,8 @@ class MoviesHome extends StatelessWidget {
                     height: 280,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: snapshot.data![0].length,
-                      itemBuilder: (ctx, i) => MovieCard(snapshot.data![0][i]),
+                      itemCount: snapshot.data![1].length,
+                      itemBuilder: (ctx, i) => MovieCard(snapshot.data![1][i]),
                     ),
                   ),
                   Padding(
@@ -65,15 +71,20 @@ class MoviesHome extends StatelessWidget {
                     height: 300,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: snapshot.data![1].length,
-                      itemBuilder: (ctx, i) => MovieCard(snapshot.data![1][i]),
+                      itemCount: snapshot.data![2].length,
+                      itemBuilder: (ctx, i) => MovieCard(snapshot.data![2][i]),
                     ),
                   ),
                 ],
               ),
             );
           } else {
-            return const CircularProgressIndicator();
+            return SizedBox(
+              height: MediaQuery.of(context).size.height / 1.3,
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
           }
         });
   }

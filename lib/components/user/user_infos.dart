@@ -13,14 +13,15 @@ class UserInfos extends StatelessWidget {
     final String? uid = user?.uid;
     final themeChange = Provider.of<DarkThemeProvider>(context);
 
-    return FutureBuilder<DocumentSnapshot>(
-        future:
-            FirebaseFirestore.instance.collection('UserData').doc(uid).get(),
-        builder:
-            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
+    return FutureBuilder(
+        future: Future.wait([
+          Future.delayed(const Duration(seconds: 1)),
+          FirebaseFirestore.instance.collection('UserData').doc(uid).get()
+        ]),
+        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+          if (snapshot.hasData) {
             Map<String, dynamic> data =
-                snapshot.data!.data()! as Map<String, dynamic>;
+                snapshot.data![1].data()! as Map<String, dynamic>;
             final lastname = data["lastname"] ?? 'Nom non renseigné';
             final firstname = data["firstname"] ?? 'Prénom non renseigné';
             final pseudo = data["pseudo"] ?? 'Pseudo non renseigné';
@@ -189,7 +190,12 @@ class UserInfos extends StatelessWidget {
               ),
             );
           } else {
-            return const CircularProgressIndicator();
+            return SizedBox(
+              height: MediaQuery.of(context).size.height / 1.3,
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
           }
         });
   }
