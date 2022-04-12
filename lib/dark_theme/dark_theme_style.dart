@@ -4,7 +4,7 @@ class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
         primarySwatch: Colors.deepPurple,
-        primaryColor: isDarkTheme ? Colors.black : Colors.white,
+        primaryColor: isDarkTheme ? Colors.black : Colors.deepPurple,
         backgroundColor: isDarkTheme ? Colors.black : const Color(0xffF1F5FB),
         indicatorColor:
             isDarkTheme ? const Color(0xff0E1D36) : const Color(0xffCBDCF8),

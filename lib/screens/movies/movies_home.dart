@@ -19,7 +19,8 @@ class MoviesHome extends StatelessWidget {
         future: Future.wait([
           Future.delayed(const Duration(seconds: 1)),
           getPopularMovies(),
-          getTopRatedMovies()
+          getTopRatedMovies(),
+          getUpcomingMovies()
         ]),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
@@ -34,7 +35,7 @@ class MoviesHome extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(top: 30),
                           child: Text(
-                            'Popular Movies',
+                            'Films populaires',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -58,7 +59,7 @@ class MoviesHome extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const <Widget>[
                         Text(
-                          'Top Rated Movies',
+                          'Films les mieux notés',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -73,6 +74,29 @@ class MoviesHome extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: snapshot.data![2].length,
                       itemBuilder: (ctx, i) => MovieCard(snapshot.data![2][i]),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const <Widget>[
+                        Text(
+                          'Films à venir',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 300,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: snapshot.data![3].length,
+                      itemBuilder: (ctx, i) => MovieCard(snapshot.data![3][i]),
                     ),
                   ),
                 ],

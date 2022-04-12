@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_movies/components/dark_theme/dark_theme_provider.dart';
+import 'package:flutter_movies/dark_theme/dark_theme_provider.dart';
+import 'package:flutter_movies/dark_theme/dark_theme_style.dart';
 import 'package:flutter_movies/routes.dart';
 import 'package:provider/provider.dart';
-
-import 'components/dark_theme/dark_theme_style.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

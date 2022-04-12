@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_movies/components/dark_theme/dark_theme_provider.dart';
-import 'package:provider/provider.dart';
 
 class UserInfos extends StatelessWidget {
   const UserInfos({Key? key}) : super(key: key);
@@ -11,7 +9,6 @@ class UserInfos extends StatelessWidget {
   Widget build(BuildContext context) {
     final User? user = FirebaseAuth.instance.currentUser;
     final String? uid = user?.uid;
-    final themeChange = Provider.of<DarkThemeProvider>(context);
 
     return FutureBuilder(
         future: Future.wait([
@@ -121,22 +118,6 @@ class UserInfos extends StatelessWidget {
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.w700),
                                           ),
-                                          TextButton(
-                                            style: TextButton.styleFrom(
-                                              textStyle: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.white,
-                                                  backgroundColor: Colors.red),
-                                            ),
-                                            onPressed: () => FirebaseAuth
-                                                .instance
-                                                .signOut()
-                                                .then((value) =>
-                                                    Navigator.of(context)
-                                                        .pushReplacementNamed(
-                                                            '/login')),
-                                            child: const Text('Se déconnecter'),
-                                          ),
                                         ],
                                       )),
                                     )))
@@ -177,11 +158,26 @@ class UserInfos extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Checkbox(
-                                  value: themeChange.darkTheme,
-                                  onChanged: (bool? value) {
-                                    themeChange.darkTheme = value ?? false;
-                                  })
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 30),
+                                      child: ElevatedButton(
+                                        onPressed: () => FirebaseAuth.instance
+                                            .signOut()
+                                            .then((value) =>
+                                                Navigator.of(context)
+                                                    .pushReplacementNamed(
+                                                        '/login')),
+                                        child: const Text('Se déconnecter'),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ))
                     ])),
