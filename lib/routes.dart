@@ -8,5 +8,5 @@ final Map<String, Widget Function(BuildContext)> routes = {
   '/': (context) => const MyHomePage(title: 'Flutter Movies'),
   '/login': (context) => const LoginScreen(),
   '/register': (context) => const RegisterScreen(),
-  '/movie-details': (context) => const MovieDetailsScreen()
+  '/details': (context) => const MovieDetailsScreen()
 };

@@ -23,7 +23,7 @@ Future<List> getTopRatedMovies() async {
 Future<List> getUpcomingMovies() async {
   MovieList movieList;
   final res = await http.get(Uri.parse(
-      'https://api.themoviedb.org/3/movie/upcoming?api_key=4d196b83a81a1379fde8fb79e2df0116&language=en-US&page=1'));
+      'https://api.themoviedb.org/3/movie/upcoming?api_key=4d196b83a81a1379fde8fb79e2df0116&language=fr-FR&page=1'));
   final decodeRes = jsonDecode(res.body);
   movieList = MovieList.fromJson(decodeRes);
   return movieList.movies ?? [];

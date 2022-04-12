@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/clients/movie.client.dart';
+import 'package:flutter_movies/helpers/genres.helper.dart';
 import 'package:flutter_movies/models/movie.model.dart';
 
 class SearchMovieWidget extends StatefulWidget {
@@ -39,12 +40,14 @@ class _SearchMovieWidgetState extends State<SearchMovieWidget> {
                   physics: const BouncingScrollPhysics(),
                   itemCount: moviesList!.length,
                   itemBuilder: (BuildContext context, int index) {
+                    final String genre =
+                        getGenreById(moviesList![index].genreIds![0]);
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).pushNamed(
-                            '/movie-details',
+                            '/details',
                             arguments: {
                               'id': moviesList![index].id.toString(),
                               'title': moviesList![index].title ?? '',
@@ -53,6 +56,7 @@ class _SearchMovieWidgetState extends State<SearchMovieWidget> {
                               'overview': moviesList![index].overview ?? '',
                               'voteAverage':
                                   moviesList![index].voteAverage ?? '',
+                              'genre': genre
                             },
                           );
                         },
@@ -95,6 +99,14 @@ class _SearchMovieWidgetState extends State<SearchMovieWidget> {
                                           moviesList![index].title ?? '',
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 1,
+                                        ),
+                                        Text(
+                                          genre,
+                                          style: const TextStyle(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
                                         Row(
                                           children: <Widget>[

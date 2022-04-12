@@ -9,11 +9,10 @@ class MovieDetailsScreen extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final String id = routeArgs['id'] ?? '2';
     final rating = routeArgs['voteAverage'];
+    final genre = routeArgs['genre'];
 
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('Movie Details'),
-          elevation: 0),
+      appBar: AppBar(title: const Text('Movie Details'), elevation: 0),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
           vertical: 10,
@@ -56,34 +55,45 @@ class MovieDetailsScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            Text(
+              'Catégorie : $genre',
+              style: const TextStyle(
+                fontSize: 14,
+                letterSpacing: 2.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Card(
                   elevation: 5,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        Icon(
-                          Icons.rate_review,
-                          size: 45,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          '$rating/10',
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 20,
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Icon(
+                            Icons.star,
+                            size: 45,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '$rating/10',
+                            style: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )),
                 ),
               ],
             ),
@@ -91,12 +101,12 @@ class MovieDetailsScreen extends StatelessWidget {
               height: 20,
             ),
             Text(
-              routeArgs['overview'] ?? 'Aucune description',
+              'Description : ' +
+                  (routeArgs['overview'] ?? 'Aucune description'),
               style: const TextStyle(
                 fontSize: 18,
                 height: 1.5,
               ),
-              textAlign: TextAlign.center,
             ),
           ],
         ),
