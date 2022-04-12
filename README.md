@@ -1,16 +1,28 @@
-# flutter_movies
+# Flutter Movie
 
-A new Flutter project.
+### Autheur :
 
-## Getting Started
+- [Dylan Lecomte](https://github.com/Prototype91)
 
-This project is a starting point for a Flutter application.
+### Installation des dépendances :
 
-A few resources to get you started if this is your first Flutter project:
+`flutter pub get`
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Lancement du projet :
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`npm run start` (puis aller sur `http://localhost:8080/` dans votre navigateur)
+
+### Features :
+
+- Inscription / Connexion via Firebase
+- Récupération de films via l'API TMDB sur la page d'accueil (au click sur un film, redirection vers la page détail du film)
+- Rechercher un film via la fonction recherche (au click sur un film recherché, redirection vers la page détail du film)
+- Affichage des informations de l'utilisateur connecté dans la page user (possibilité de se déconnecter)
+- Possibilité d'activer / désactiver le dark mode
+
+## Technologies utilisées :
+
+- [flutter](https://flutter.dev/)
+- [firebase](https://firebase.google.com/)
+- [http](https://pub.dev/packages/http)
+- [tmdb-api](https://developers.themoviedb.org/3/getting-started)

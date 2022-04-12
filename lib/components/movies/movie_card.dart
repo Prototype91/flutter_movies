@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/models/movie.model.dart';
 
@@ -30,7 +31,7 @@ class MovieCard extends StatelessWidget {
             Card(
               elevation: 10,
               child: Hero(
-                tag: movie.id.toString(),
+                tag: Random().nextInt(100).toString(),
                 child: Container(
                   height: 180,
                   decoration: BoxDecoration(

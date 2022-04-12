@@ -62,18 +62,24 @@ class _SearchMovieWidgetState extends State<SearchMovieWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 SizedBox(
-                                  width: 70,
-                                  height: 80,
+                                  width: 100,
+                                  height: 160,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
-                                    child: FadeInImage(
-                                      image: NetworkImage(
-                                          'https://image.tmdb.org/t/p/w500/' +
-                                              (moviesList![index].posterPath ??
-                                                  '')),
-                                      fit: BoxFit.cover,
-                                      placeholder: const AssetImage(''),
-                                    ),
+                                    child: moviesList![index].posterPath == null
+                                        ? Image.asset(
+                                            'assets/images/none.jpg',
+                                            fit: BoxFit.cover,
+                                          )
+                                        : FadeInImage(
+                                            image: NetworkImage(
+                                                'https://image.tmdb.org/t/p/w500/' +
+                                                    moviesList![index]
+                                                        .posterPath!),
+                                            fit: BoxFit.cover,
+                                            placeholder: const AssetImage(
+                                                'assets/images/loading.gif'),
+                                          ),
                                   ),
                                 ),
                                 Expanded(
@@ -106,10 +112,6 @@ class _SearchMovieWidgetState extends State<SearchMovieWidget> {
                                 ),
                               ],
                             ),
-                            // const Padding(
-                            //   padding: EdgeInsets.symmetric(horizontal: 24.0),
-                            //   child: Divider(),
-                            // )
                           ],
                         ),
                       ),
