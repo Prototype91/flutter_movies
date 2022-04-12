@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
@@ -7,12 +8,12 @@ class MovieDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final routeArgs =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-    final String id = routeArgs['id'] ?? '2';
+    final String id = routeArgs['id'] ?? Random().nextInt(100000).toString();
     final rating = routeArgs['voteAverage'];
     final genre = routeArgs['genre'];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Movie Details'), elevation: 0),
+      appBar: AppBar(title: const Text('Fiche du film'), elevation: 0),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
           vertical: 10,
