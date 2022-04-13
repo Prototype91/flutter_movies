@@ -6,6 +6,9 @@ class SearchMovies extends SearchDelegate<Movie?> {
   SearchMovies();
 
   @override
+  String get searchFieldLabel => 'Rechercher';
+
+  @override
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
