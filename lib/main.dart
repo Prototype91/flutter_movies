@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               routes: routes,
               initialRoute:
-                  FirebaseAuth.instance.currentUser != null ? '/' : '/',
+                  FirebaseAuth.instance.currentUser != null ? '/' : '/login',
             );
           }
 
