@@ -11,6 +11,7 @@ class MovieDetailsScreen extends StatelessWidget {
     final String id = routeArgs['id'] ?? Random().nextInt(100000).toString();
     final rating = routeArgs['voteAverage'];
     final genre = routeArgs['genre'];
+    final date = routeArgs['date'];
 
     return Scaffold(
       appBar: AppBar(
@@ -55,6 +56,17 @@ class MovieDetailsScreen extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
+                letterSpacing: 2.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Date de sortie : $date',
+              style: const TextStyle(
+                fontSize: 14,
                 letterSpacing: 2.5,
               ),
               textAlign: TextAlign.center,

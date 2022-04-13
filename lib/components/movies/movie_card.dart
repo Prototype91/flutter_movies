@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/helpers/genres.helper.dart';
 import 'package:flutter_movies/models/movie.model.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 // ignore: must_be_immutable
 class MovieCard extends StatelessWidget {
@@ -10,7 +12,9 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('fr_FR', null);
     final String genre = getGenreById(movie.genreIds![0]);
+    final DateTime date = DateTime.parse(movie.releaseDate!);
     return Container(
       padding: const EdgeInsets.all(10),
       width: 160,
@@ -25,7 +29,8 @@ class MovieCard extends StatelessWidget {
                   'https://image.tmdb.org/t/p/w500/' + (movie.posterPath ?? ''),
               'overview': movie.overview ?? '',
               'voteAverage': movie.voteAverage ?? '',
-              'genre': genre
+              'genre': genre,
+              'date': DateFormat.yMMMEd('fr-FR').format(date)
             },
           );
         },
@@ -62,11 +67,11 @@ class MovieCard extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Text(
-              movie.releaseDate ?? 'Date inconnue',
+              DateFormat.yMMMEd('fr-FR').format(date),
               style: const TextStyle(
-                fontSize: 13,
+                fontSize: 11,
                 fontWeight: FontWeight.bold,
-                letterSpacing: 2.5,
+                letterSpacing: 1.5,
               ),
               textAlign: TextAlign.center,
             ),

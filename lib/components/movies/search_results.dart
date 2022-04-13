@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movies/clients/movie.client.dart';
 import 'package:flutter_movies/helpers/genres.helper.dart';
 import 'package:flutter_movies/models/movie.model.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 class SearchResults extends StatefulWidget {
   final String? name;
@@ -25,6 +27,7 @@ class _SearchResultsState extends State<SearchResults> {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('fr_FR', null);
     return Container(
       child: moviesList == null
           ? const Center(
@@ -45,6 +48,11 @@ class _SearchResultsState extends State<SearchResults> {
                     if (moviesList![index].genreIds?.length != 0) {
                       genre = getGenreById(moviesList![index].genreIds![0]);
                     }
+                    String date = 'Date inconnue';
+                    if (moviesList![index].releaseDate != '') {
+                      date = DateFormat.yMMMEd('fr-FR').format(
+                          DateTime.parse(moviesList![index].releaseDate!));
+                    }
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
@@ -61,7 +69,8 @@ class _SearchResultsState extends State<SearchResults> {
                                   'Pas de description',
                               'voteAverage':
                                   moviesList![index].voteAverage ?? '0',
-                              'genre': genre
+                              'genre': genre,
+                              'date': date
                             },
                           );
                         },
@@ -106,17 +115,34 @@ class _SearchResultsState extends State<SearchResults> {
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 1,
                                           style: const TextStyle(
-                                            letterSpacing: 2.5,
-                                          ),
-                                        ),
-                                        Text(
-                                          genre,
-                                          style: const TextStyle(
-                                            fontSize: 13,
                                             fontWeight: FontWeight.bold,
                                             letterSpacing: 2.5,
                                           ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'Catégorie : $genre',
+                                          style: const TextStyle(
+                                            fontSize: 13,
+                                            letterSpacing: 2.5,
+                                          ),
                                           textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          'Sortie : $date',
+                                          style: const TextStyle(
+                                            fontSize: 13,
+                                            letterSpacing: 2.5,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
                                         ),
                                         Row(
                                           children: <Widget>[

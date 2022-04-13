@@ -47,7 +47,8 @@ class _LoginFormState extends State<LoginForm> {
         ),
         child: Column(
           children: <Widget>[
-            const Text('Connexion'),
+            const Text('Connexion',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             const SizedBox(
               height: 25,
             ),
@@ -107,8 +108,9 @@ class _LoginFormState extends State<LoginForm> {
               style: TextButton.styleFrom(
                 textStyle: const TextStyle(fontSize: 14),
               ),
-              onPressed: () =>
-                  Navigator.of(context, ).pushReplacementNamed('/register'),
+              onPressed: () => Navigator.of(
+                context,
+              ).pushReplacementNamed('/register'),
               child: const Text('Créer un compte'),
             )
           ],
