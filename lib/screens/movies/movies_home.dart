@@ -39,6 +39,7 @@ class MoviesHome extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
+                              letterSpacing: 2.5,
                             ),
                           ),
                         )
@@ -61,6 +62,7 @@ class MoviesHome extends StatelessWidget {
                         Text(
                           'Films les mieux notés',
                           style: TextStyle(
+                            letterSpacing: 2.5,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
@@ -86,6 +88,7 @@ class MoviesHome extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
+                            letterSpacing: 2.5,
                           ),
                         ),
                       ],

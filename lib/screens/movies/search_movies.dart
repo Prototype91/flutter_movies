@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movies/components/movies/search_movies.widget.dart';
+import 'package:flutter_movies/components/movies/search_results.dart';
 import 'package:flutter_movies/models/movie.model.dart';
 
-class MovieSearch extends SearchDelegate<Movie?> {
-  MovieSearch();
+class SearchMovies extends SearchDelegate<Movie?> {
+  SearchMovies();
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -31,7 +31,7 @@ class MovieSearch extends SearchDelegate<Movie?> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return SearchMovieWidget(
+    return SearchResults(
       name: query,
     );
   }

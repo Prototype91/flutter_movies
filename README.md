@@ -6,11 +6,13 @@
 
 ### Installation des dépendances :
 
-`flutter pub get`
+- `flutter pub get`
 
 ### Lancement du projet :
 
-`npm run start` (puis aller sur `http://localhost:8080/` dans votre navigateur)
+- `npm run start` (puis aller sur `http://localhost:8080/` dans votre navigateur)
+- Activer le mode Responsive mobile
+
 
 ### Features :
 

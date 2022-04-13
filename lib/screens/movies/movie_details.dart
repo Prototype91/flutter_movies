@@ -13,7 +13,13 @@ class MovieDetailsScreen extends StatelessWidget {
     final genre = routeArgs['genre'];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Fiche du film'), elevation: 0),
+      appBar: AppBar(
+          title: const Text('Fiche du Film',
+              style: TextStyle(
+                fontSize: 16,
+                letterSpacing: 2.5,
+              )),
+          elevation: 0),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
           vertical: 10,
@@ -80,10 +86,10 @@ class MovieDetailsScreen extends StatelessWidget {
                       ),
                       child: Column(
                         children: <Widget>[
-                          Icon(
+                          const Icon(
                             Icons.star,
                             size: 45,
-                            color: Theme.of(context).primaryColor,
+                            color: Colors.deepPurple,
                           ),
                           const SizedBox(
                             height: 10,
@@ -91,7 +97,10 @@ class MovieDetailsScreen extends StatelessWidget {
                           Text(
                             '$rating/10',
                             style: const TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 2.5,
+                            ),
                           ),
                         ],
                       )),
@@ -105,8 +114,9 @@ class MovieDetailsScreen extends StatelessWidget {
               'Description : ' +
                   (routeArgs['overview'] ?? 'Aucune description'),
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 height: 1.5,
+                letterSpacing: 2.5,
               ),
             ),
           ],

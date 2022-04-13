@@ -22,7 +22,7 @@ class UserInfos extends StatelessWidget {
             final lastname = data["lastname"] ?? 'Nom non renseigné';
             final firstname = data["firstname"] ?? 'Prénom non renseigné';
             final pseudo = data["pseudo"] ?? 'Pseudo non renseigné';
-            final city = data["city"] ?? 'Ville non renseigné';
+            final city = data["city"] ?? 'Ville non renseignée';
             final country = data["country"] ?? 'Pays non renseigné';
             final email = data["email"] ?? 'Email non renseigné';
             return Padding(
@@ -33,44 +33,22 @@ class UserInfos extends StatelessWidget {
                     children: const [
                       Text('Profile',
                           style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.bold))
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2.5,
+                          ))
                     ],
                   ),
                   Container(
                     height: 400,
                     width: double.infinity,
                     margin: const EdgeInsets.only(top: 10),
-                    decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 4,
-                            offset: Offset(
-                              0.0,
-                              5,
-                            ),
-                          ),
-                        ]),
                     child: (Column(children: [
                       Stack(
                         children: [
                           const SizedBox(
                             width: double.infinity,
                             height: 200,
-                          ),
-                          Container(
-                            width: double.infinity,
-                            height: 130,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(40),
-                                    topRight: Radius.circular(40)),
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://geo.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Fgeo.2F2020.2F01.2F08.2Fd0539a42-8114-44a0-a0bc-ae434b7ef018.2Ejpeg/1150x647/background-color/ffffff/quality/70/quelles-sont-les-plus-belles-plages-du-monde.jpg'),
-                                    fit: BoxFit.cover)),
                           ),
                           Positioned(
                             bottom: 20,
@@ -81,7 +59,6 @@ class UserInfos extends StatelessWidget {
                                   width: 100,
                                   height: 100,
                                   decoration: const BoxDecoration(
-                                      color: Colors.white,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(50))),
                                   child: (Container(
@@ -172,7 +149,9 @@ class UserInfos extends StatelessWidget {
                                                 Navigator.of(context)
                                                     .pushReplacementNamed(
                                                         '/login')),
-                                        child: const Text('Se déconnecter'),
+                                        child: const Text('Se déconnecter',
+                                            style:
+                                                TextStyle(letterSpacing: 1.5)),
                                       ),
                                     ),
                                   ),

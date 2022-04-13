@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movies/components/movies/search_movies.dart';
+import 'package:flutter_movies/screens/movies/search_movies.dart';
 import 'package:flutter_movies/dark_theme/dark_theme_provider.dart';
 import 'package:flutter_movies/models/movie.model.dart';
 import 'package:flutter_movies/screens/movies/movies_home.dart';
@@ -28,7 +28,11 @@ class _MyHomePageState extends State<MyHomePage> {
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Movies', style: TextStyle(fontSize: 16)),
+        title: const Text('Flutter Movies',
+            style: TextStyle(
+              fontSize: 16,
+              letterSpacing: 2.5,
+            )),
         leading: Switch(
           value: themeChange.darkTheme,
           onChanged: (bool value) {
@@ -42,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: const Icon(Icons.search),
             onPressed: () async {
               await showSearch<Movie?>(
-                  context: context, delegate: MovieSearch());
+                  context: context, delegate: SearchMovies());
             },
           )
         ],
@@ -60,8 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
         selectedItemColor: Colors.white,
         iconSize: 24,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'User'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
     );

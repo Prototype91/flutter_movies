@@ -5,17 +5,7 @@ class Styles {
     return ThemeData(
         primarySwatch: Colors.deepPurple,
         primaryColor: isDarkTheme ? Colors.black : Colors.deepPurple,
-        backgroundColor: isDarkTheme ? Colors.black : const Color(0xffF1F5FB),
-        indicatorColor:
-            isDarkTheme ? const Color(0xff0E1D36) : const Color(0xffCBDCF8),
-        hintColor:
-            isDarkTheme ? const Color(0xff280C0B) : const Color(0xffEECED3),
-        highlightColor:
-            isDarkTheme ? const Color(0xff372901) : const Color(0xffFCE192),
-        hoverColor:
-            isDarkTheme ? const Color(0xff3A3A3B) : const Color(0xff4285F4),
-        focusColor:
-            isDarkTheme ? const Color(0xff0B2512) : const Color(0xffA8DAB5),
+        backgroundColor: isDarkTheme ? Colors.black : Colors.white,
         disabledColor: Colors.grey,
         cardColor: isDarkTheme ? const Color(0xFF151515) : Colors.white,
         canvasColor: isDarkTheme ? Colors.black : Colors.grey[50],
@@ -29,6 +19,9 @@ class Styles {
         ),
         textSelectionTheme: TextSelectionThemeData(
             selectionColor: isDarkTheme ? Colors.white : Colors.black),
+        iconTheme: Theme.of(context)
+            .iconTheme
+            .copyWith(color: isDarkTheme ? Colors.white : Colors.black),
         bottomNavigationBarTheme: Theme.of(context)
             .bottomNavigationBarTheme
             .copyWith(

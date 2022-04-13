@@ -3,15 +3,15 @@ import 'package:flutter_movies/clients/movie.client.dart';
 import 'package:flutter_movies/helpers/genres.helper.dart';
 import 'package:flutter_movies/models/movie.model.dart';
 
-class SearchMovieWidget extends StatefulWidget {
+class SearchResults extends StatefulWidget {
   final String? name;
-  const SearchMovieWidget({Key? key, this.name}) : super(key: key);
+  const SearchResults({Key? key, this.name}) : super(key: key);
 
   @override
-  _SearchMovieWidgetState createState() => _SearchMovieWidgetState();
+  _SearchResultsState createState() => _SearchResultsState();
 }
 
-class _SearchMovieWidgetState extends State<SearchMovieWidget> {
+class _SearchResultsState extends State<SearchResults> {
   List<Movie>? moviesList;
   @override
   void initState() {
@@ -40,8 +40,11 @@ class _SearchMovieWidgetState extends State<SearchMovieWidget> {
                   physics: const BouncingScrollPhysics(),
                   itemCount: moviesList!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final String genre =
-                        getGenreById(moviesList![index].genreIds![0]);
+                    String genre = 'Pas de catégorie';
+                    // ignore: prefer_is_empty
+                    if (moviesList![index].genreIds?.length != 0) {
+                      genre = getGenreById(moviesList![index].genreIds![0]);
+                    }
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
@@ -50,12 +53,14 @@ class _SearchMovieWidgetState extends State<SearchMovieWidget> {
                             '/details',
                             arguments: {
                               'id': moviesList![index].id.toString(),
-                              'title': moviesList![index].title ?? '',
+                              'title':
+                                  moviesList![index].title ?? 'Titre inconnu',
                               'posterPath': 'https://image.tmdb.org/t/p/w500/' +
                                   (moviesList![index].posterPath ?? ''),
-                              'overview': moviesList![index].overview ?? '',
+                              'overview': moviesList![index].overview ??
+                                  'Pas de description',
                               'voteAverage':
-                                  moviesList![index].voteAverage ?? '',
+                                  moviesList![index].voteAverage ?? '0',
                               'genre': genre
                             },
                           );
@@ -96,15 +101,20 @@ class _SearchMovieWidgetState extends State<SearchMovieWidget> {
                                           MainAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
-                                          moviesList![index].title ?? '',
+                                          moviesList![index].title ??
+                                              'Titre inconnu',
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 1,
+                                          style: const TextStyle(
+                                            letterSpacing: 2.5,
+                                          ),
                                         ),
                                         Text(
                                           genre,
                                           style: const TextStyle(
                                             fontSize: 13,
                                             fontWeight: FontWeight.bold,
+                                            letterSpacing: 2.5,
                                           ),
                                           textAlign: TextAlign.center,
                                         ),
@@ -112,7 +122,10 @@ class _SearchMovieWidgetState extends State<SearchMovieWidget> {
                                           children: <Widget>[
                                             Text(
                                               moviesList![index].voteAverage ??
-                                                  '12',
+                                                  '0',
+                                              style: const TextStyle(
+                                                letterSpacing: 2.5,
+                                              ),
                                             ),
                                             const Icon(Icons.star,
                                                 color: Colors.deepPurple)

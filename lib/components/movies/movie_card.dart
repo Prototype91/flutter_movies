@@ -56,6 +56,7 @@ class MovieCard extends StatelessWidget {
               style: const TextStyle(
                 overflow: TextOverflow.ellipsis,
                 fontSize: 13,
+                letterSpacing: 2.5,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
@@ -65,6 +66,7 @@ class MovieCard extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.bold,
+                letterSpacing: 2.5,
               ),
               textAlign: TextAlign.center,
             ),
@@ -73,6 +75,7 @@ class MovieCard extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.bold,
+                letterSpacing: 2.5,
               ),
               textAlign: TextAlign.center,
             ),
