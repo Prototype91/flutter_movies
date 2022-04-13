@@ -14,7 +14,12 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     initializeDateFormatting('fr_FR', null);
     final String genre = getGenreById(movie.genreIds![0]);
-    final DateTime date = DateTime.parse(movie.releaseDate!);
+
+    String date = 'Date inconnue';
+    if (movie.releaseDate != '') {
+      date =
+          DateFormat.yMMMEd('fr-FR').format(DateTime.parse(movie.releaseDate!));
+    }
     return Container(
       padding: const EdgeInsets.all(10),
       width: 160,
@@ -30,7 +35,7 @@ class MovieCard extends StatelessWidget {
               'overview': movie.overview ?? '',
               'voteAverage': movie.voteAverage ?? '',
               'genre': genre,
-              'date': DateFormat.yMMMEd('fr-FR').format(date)
+              'date': date
             },
           );
         },
@@ -67,7 +72,7 @@ class MovieCard extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Text(
-              DateFormat.yMMMEd('fr-FR').format(date),
+              date,
               style: const TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.bold,

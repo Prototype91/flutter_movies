@@ -86,7 +86,7 @@ class _SearchResultsState extends State<SearchResults> {
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: moviesList![index].posterPath == null
                                         ? Image.asset(
-                                            'assets/images/none.jpg',
+                                            'assets/images/404.gif',
                                             fit: BoxFit.cover,
                                           )
                                         : FadeInImage(
@@ -147,8 +147,12 @@ class _SearchResultsState extends State<SearchResults> {
                                         Row(
                                           children: <Widget>[
                                             Text(
-                                              moviesList![index].voteAverage ??
-                                                  '0',
+                                              (moviesList![index].voteAverage ==
+                                                      '0'
+                                                  ? 'Pas de note'
+                                                  : (moviesList![index]
+                                                          .voteAverage! +
+                                                      ' / 10')),
                                               style: const TextStyle(
                                                 letterSpacing: 2.5,
                                               ),

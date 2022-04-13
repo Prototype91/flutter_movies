@@ -32,27 +32,32 @@ class MovieDetailsScreen extends StatelessWidget {
               child: Card(
                 elevation: 5,
                 child: Hero(
-                  tag: id,
-                  child: Container(
-                    height: 450,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                          routeArgs['posterPath'] ?? '',
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                    tag: id,
+                    child: SizedBox(
+                      height: 450,
+                      child: routeArgs['posterPath'] ==
+                              'https://image.tmdb.org/t/p/w500/'
+                          ? Image.asset(
+                              'assets/images/404.gif',
+                              fit: BoxFit.cover,
+                            )
+                          : FadeInImage(
+                            width: 375,
+                              image: NetworkImage(
+                                  'https://image.tmdb.org/t/p/w500/' +
+                                      (routeArgs['posterPath']!)),
+                              fit: BoxFit.cover,
+                              placeholder:
+                                  const AssetImage('assets/images/loading.gif'),
+                            ),
+                    )),
               ),
             ),
             const SizedBox(
               height: 20,
             ),
             Text(
-              routeArgs['title'] ?? '',
+              routeArgs['title']!,
               style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -107,7 +112,7 @@ class MovieDetailsScreen extends StatelessWidget {
                             height: 10,
                           ),
                           Text(
-                            '$rating/10',
+                            (rating == '0' ? 'Pas de note' : '$rating / 10'),
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -124,7 +129,9 @@ class MovieDetailsScreen extends StatelessWidget {
             ),
             Text(
               'Description : ' +
-                  (routeArgs['overview'] ?? 'Aucune description'),
+                  (routeArgs['overview'] == ''
+                      ? 'Aucune description'
+                      : routeArgs['overview']!),
               style: const TextStyle(
                 fontSize: 14,
                 height: 1.5,
