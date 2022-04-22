@@ -72,7 +72,7 @@ class _LoginFormState extends State<LoginForm> {
               height: 25,
             ),
             TextFormField(
-              decoration: const InputDecoration(hintText: 'Password'),
+              decoration: const InputDecoration(hintText: 'Mot de passe'),
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
